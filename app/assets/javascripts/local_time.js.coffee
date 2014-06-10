@@ -16,8 +16,8 @@ if isNaN Date.parse "2011-01-01T12:00:00-05:00"
       dateString = "#{year}/#{month}/#{day} #{hour}:#{minute}:#{second} GMT#{[offset]}"
     parse dateString
 
-weekdays = "Sunday Monday Tuesday Wednesday Thursday Friday Saturday".split " "
-months   = "January February March April May June July August September October November December".split " "
+weekdays = "Sonntag Montag Dienstag Mittwoch Donnerstag Freitag Samstag".split " "
+months   = "Januar Feburar März April Mai Juni Juli August September Oktober November Dezember".split " "
 
 pad = (num) -> ('0' + num).slice -2
 
@@ -100,16 +100,16 @@ class RelativeTime
   toString: ->
     # Today: "Saved 5 hours ago"
     if ago = @timeElapsed()
-      "#{ago} ago"
+      "vor #{ago}"
 
     # Yesterday: "Saved yesterday at 8:15am"
     # This week: "Saved Thursday at 8:15am"
     else if day = @relativeWeekday()
-      "#{day} at #{@formatTime()}"
+      "#{day} um #{@formatTime()}"
 
     # Older: "Saved on Dec 15"
     else
-      "on #{@formatDate()}"
+      "am #{@formatDate()}"
 
   toTimeOrDateString: ->
     if @calendarDate.isToday()
@@ -126,17 +126,17 @@ class RelativeTime
     if ms < 0
       null
     else if sec < 10
-      "a second"
+      "eine Sekunde"
     else if sec < 45
-      "#{sec} seconds"
+      "#{sec} Sekunden"
     else if sec < 90
-      "a minute"
+      "eine Minute"
     else if min < 45
-      "#{min} minutes"
+      "#{min} Minuten"
     else if min < 90
-      "an hour"
+      "eine Stunde"
     else if hr < 24
-      "#{hr} hours"
+      "#{hr} Stunden"
     else
       null
 
@@ -146,9 +146,9 @@ class RelativeTime
     if daysPassed > 6
       null
     else if daysPassed is 0
-      "today"
+      "Heute"
     else if daysPassed is 1
-      "yesterday"
+      "Gestern"
     else
       strftime @date, "%A"
 
