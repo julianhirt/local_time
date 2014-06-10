@@ -30,7 +30,7 @@ strftime = (time, formatString) ->
   minute = time.getMinutes()
   second = time.getSeconds()
 
-  formatString.replace /%([%aAbBcdeHIlmMpPSwyYZ])/g, ([match, modifier]) ->
+  formatString.replace /%([%aAbBcdeHIklmMpPSwyYZ])/g, ([match, modifier]) ->
     switch modifier
       when '%' then '%'
       when 'a' then weekdays[day].slice 0, 3
@@ -127,15 +127,15 @@ class RelativeTime
     if ms < 0
       null
     else if sec < 10
-      "eine Sekunde"
+      "einer Sekunde"
     else if sec < 45
       "#{sec} Sekunden"
     else if sec < 90
-      "eine Minute"
+      "einer Minute"
     else if min < 45
       "#{min} Minuten"
     else if min < 90
-      "eine Stunde"
+      "einer Stunde"
     else if hr < 24
       "#{hr} Stunden"
     else
@@ -159,7 +159,7 @@ class RelativeTime
     strftime @date, format
 
   formatTime: ->
-    strftime @date, '%H:%M'
+    strftime @date, '%k:%M'
 
 relativeDate = (date) ->
   new RelativeTime(date).formatDate()
