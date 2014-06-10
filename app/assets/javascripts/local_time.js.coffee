@@ -40,6 +40,7 @@ strftime = (time, formatString) ->
       when 'c' then time.toString()
       when 'd' then pad date
       when 'e' then date
+      when 'k' then hour
       when 'H' then pad hour
       when 'I' then pad strftime time, '%l'
       when 'l' then (if hour is 0 or hour is 12 then 12 else (hour + 12) % 12)
