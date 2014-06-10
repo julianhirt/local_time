@@ -158,7 +158,7 @@ class RelativeTime
     strftime @date, format
 
   formatTime: ->
-    strftime @date, '%k:%M'
+    strftime @date, '%H:%M'
 
 relativeDate = (date) ->
   new RelativeTime(date).formatDate()
